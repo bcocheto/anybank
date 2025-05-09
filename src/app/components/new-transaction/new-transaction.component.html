@@ -1,11 +1,15 @@
 <main class="form-wrapper">
-  <form action="" class="form">
+  <form (ngSubmit)="onSubmit()" action="" class="form" ngNativeValidate>
     <h2 class="title">Nova Transação</h2>
     <div class="fields">
       <label class="field-group"
         >Transação
         <div class="select-wrapper">
-          <select name="transaction-type" class="field select-transaction">
+          <select
+            [(ngModel)]="transactionType"
+            name="transaction-type"
+            class="field select-transaction"
+          >
             <option value="" selected disabled>
               Selecione o tipo de transação
             </option>
@@ -14,6 +18,22 @@
           </select>
         </div>
       </label>
+      <label class="field-group">
+        Valor
+        <div class="input-wrapper">
+          <input
+            type="number"
+            min="0.01"
+            step="0.01"
+            name="value"
+            class="field transaction-value"
+            placeholder="00,00"
+            [(ngModel)]="newTransaction"
+            required
+          />
+        </div>
+      </label>
+      <button class="confirm-transaction">Confirmar</button>
     </div>
   </form>
 </main>

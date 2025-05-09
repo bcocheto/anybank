@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { BannerComponent } from './components/banner/banner.component';
 import { NewTransactionComponent } from './components/new-transaction/new-transaction.component';
+import { Transaction } from './models/transaction';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,8 @@ import { NewTransactionComponent } from './components/new-transaction/new-transa
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'anybank';
+  transactions = signal<Transaction[]>([]);
+  processTransaction(transaction: Transaction) {
+    this.transactions.update((list) => [transaction, ...list]);
+  }
 }
